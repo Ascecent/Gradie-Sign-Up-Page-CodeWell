@@ -1,0 +1,209 @@
+@import "variables", "mixins";
+
+body {
+     background: {
+          image: url("../../../assets/Background.png");
+          size: cover;
+          position: center;
+          repeat: no-repeat;
+     }
+     min-height: 100vh;
+     font-family: $font;
+     @include createFlexContainer();
+}
+
+main {
+     max-width: 1000 / 16 + rem;
+     @include createFlexContainer("row", "center", "none");
+     margin: 2rem;
+     overflow-x: hidden;
+}
+
+.primary-font {
+     font: {
+          size: $primary-font-size;
+          weight: $bold-font-weight;
+     }
+}
+
+.secondary-font {
+     font: {
+          size: $secondary-font-size;
+          weight: $regular-font-weight;
+     }
+}
+
+.phone-mock-up {
+     border-radius: 1rem 0 0 1rem;
+     background-color: $primary-color;
+     padding: 3rem 5rem 0;
+     text-align: center;
+     flex: 50%;
+     position: relative;
+     min-height: 600 / 16 + rem;
+
+     .primary-font {
+          color: $white;
+          margin-bottom: 1rem;
+     }
+
+     p {
+          color: $primary-color-variant;
+          margin-bottom: 5rem;
+     }
+     img {
+          width: 100%;
+          max-width: 20rem;
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+     }
+}
+
+.login-form {
+     padding: 48/16 + rem 80 / 16 + rem;
+     background-color: $white;
+     border: 1px solid $border-color;
+     border-radius: 0 1rem 1rem 0;
+     flex: 50%;
+     form {
+          height: 100%;
+          @include createFlexContainer("column", "none", "none");
+
+          input {
+               padding: 1rem;
+               border: 1px solid $border-color;
+               border-radius: 0.5rem;
+               font-size: $secondary-font-size;
+               color: rgb(141, 141, 141);
+               margin-bottom: 2rem;
+          }
+
+          .primary-font {
+               margin-bottom: 2rem;
+          }
+
+          .secondary-font {
+               font-weight: $medium-font-weight;
+               margin-bottom: 0.5rem;
+          }
+
+          .terms_checkbox {
+               display: flex;
+               letter-spacing: 0.03rem;
+               font-weight: $regular-font-weight;
+               line-height: 1.5;
+
+               div:first-child {
+                    margin-right: 1rem;
+               }
+
+               a {
+                    color: $primary-color;
+                    font-weight: $bold-font-weight;
+                    transition: color 0.25s ease-in-out;
+
+                    &:hover {
+                         color: $primary-color-variant;
+                    }
+               }
+          }
+     }
+}
+
+/* Custom checkbox styling begin */
+.custom-check__container {
+     position: relative;
+
+     .default-check__input {
+          position: absolute;
+          opacity: 0;
+          height: 0;
+          width: 0;
+     }
+     .custom-checkmark {
+          cursor: pointer;
+          display: inline-block;
+          height: 25px;
+          width: 25px;
+          background-color: $white;
+          border: 1px solid $border-color;
+          border-radius: 0.5rem;
+
+          &::after {
+               content: "";
+               position: absolute;
+               left: 9px;
+               top: 5px;
+               width: 5px;
+               height: 10px;
+               border: solid white;
+               border-width: 0 3px 3px 0;
+               transform: rotate(45deg);
+               display: none;
+          }
+     }
+
+     &:hover .default-check__input ~ .custom-checkmark {
+          background-color: #ccc;
+     }
+
+     .default-check__input:checked ~ .custom-checkmark {
+          background-color: #2196f3;
+     }
+
+     .default-check__input:checked ~ .custom-checkmark::after {
+          display: block;
+     }
+}
+
+.btn {
+     cursor: pointer;
+     padding: 1.5rem 1rem;
+     background-color: $primary-color;
+     border: none;
+     border-radius: 0.5rem;
+     margin-top: 1rem;
+     color: $white;
+     font: {
+          weight: $bold-font-weight;
+          size: 1.5rem;
+     }
+     letter-spacing: 0.04rem;
+     transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+
+     &:hover {
+          background-color: $primary-color-variant;
+     }
+
+     &:active {
+          transform: scale(0.9);
+     }
+}
+
+@media screen and (max-width: 1000px) {
+     main {
+          flex-direction: column;
+          margin: 5rem;
+     }
+
+     .phone-mock-up {
+          border-radius: 0;
+     }
+
+     .login-form {
+          border-radius: 0 0 1rem 1rem;
+     }
+}
+
+@media screen and (max-width: 600px) {
+     main {
+          margin: 0;
+          min-height: 100vh;
+     }
+
+     .login-form {
+          padding: 48/16 + rem 40 / 16 + rem;
+     }
+}

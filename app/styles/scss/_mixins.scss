@@ -1,0 +1,43 @@
+// --------------------------------
+// Mixins
+
+$justify-content-values: (
+    "center": center,
+    "space-between": space-between,
+    "space-evenly": space-evenly,
+    "space-around": space-around,
+    "none" : none,
+);
+
+$direction-values: (
+    "row": row,
+    "row-reverse": row-reverse,
+    "column": column,
+    "column-revers": column-reverse,
+);
+
+$align-items-values: (
+    "baseline": baseline,
+    "center": center,
+    "flex-start": flex-start,
+    "flex-end": flex-end,
+    "none": none,
+);
+
+@mixin createFlexContainer(
+    $direction: "row",
+    $justify-content: "center",
+    $align-items: "center",
+    $flex-wrap: nowrap
+) {
+    display: flex;
+    flex-direction: map-get($map: $direction-values, $key: $direction);
+    justify-content: map-get(
+        $map: $justify-content-values,
+        $key: $justify-content
+    );
+    align-items: map-get($map: $align-items-values, $key: $align-items);
+    flex-wrap: $flex-wrap;
+}
+
+// --------------------------------
